@@ -1,0 +1,23 @@
+<header>
+  <% logo = image_tag("logo.png", :alt => "Sample App", :class => "round") %>
+  <%= link_to logo, root_path %>
+  <nav class="round">  
+	<% if user_signed_in? %>
+		Signed in as, 
+	    <a href="<%= user_path(current_user) %>">
+		<span class="user_name">
+		<%= current_user.username %>
+		</span>
+	<% end %>
+    <ul>
+      <li><%= link_to "Home", root_path %></li>
+	  <li><%= link_to "Users", users_path %></li>
+      <li><%= link_to "Help", help_path %></li>
+	  <% if user_signed_in? %>
+		<li><%= link_to "Sign Out", destroy_user_session_path %></li>
+	  <% else %>
+	    <li><%= link_to "Sign up", new_user_registration_path %> or <%= link_to "Sign in", new_user_session_path %></li>
+	  <% end %>
+    </ul>
+  </nav>
+</header>
